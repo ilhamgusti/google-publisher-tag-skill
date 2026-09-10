@@ -1,0 +1,81 @@
+---
+type: Reference
+title: "Display a web interstitial ad"
+description: "This example demonstrates how to display a web interstitial ad using the Google"
+tags: [gpt, _staging]
+timestamp: 2026-09-10T00:00:00Z
+---
+
+# Display a web interstitial ad
+
+This example demonstrates how to display a web interstitial ad using the Google
+Publisher Tag (GPT) library. Web interstitials are GPT-managed, full-page ads
+that appear in response to user actions. For more information about web
+interstitials, see [Traffic web interstitials](https://support.google.com/admanager/answer/9840201).
+
+The following user actions are eligible to trigger a web interstitial ad:
+
+| User action | [API name](https://developers.google.com/publisher-tag/reference#googletag.config.interstitialconfig) | Default | Configurable |
+|---|---|---|---|
+| Clicking on an anchor element. | N/A | Enabled | No |
+| Scrolling to the end of the page's main `<article>` element. | `endOfArticle` | Disabled | Yes |
+| Clicking, scrolling, or typing after being inactive for at least 30 seconds. | `inactivity` | Disabled | Yes |
+| Clicking on the browser navigation bar. (Desktop only) | `navBar` | Disabled | Yes |
+| Hiding and then returning to the page (for example, by switching tabs). | `unhideWindow` | Disabled | Yes |
+
+> [!IMPORTANT]
+> **Important:** Default trigger states are [configurable in Google Ad Manager](https://support.google.com/admanager/answer/9840201). If these values have been modified for your Ad Manager account, they may not match the preceding table.
+
+Support for additional user actions may be added in the future. Follow the
+[GPT release notes](https://developers.google.com/publisher-tag/release-notes) for updates.
+
+## Usage notes
+
+- **To ensure an optimal user experience, GPT only requests web interstitial
+  ads on pages that properly support the format.** Web interstitials are only
+  supported when GPT is running in the top window. On pages that don't support
+  web interstitials, `defineOutOfPageSlot()` may return null. Be sure to check
+  for this to avoid errors.
+
+- **Only request web interstitial ads on pages or environments where you want
+  an interstitial to appear.** Web interstitial ads are eligible to serve to
+  desktop, tablet, and mobile devices.
+
+  > [!TIP]
+  > **Tip:** For best results, use `<meta name="viewport" content="width=device-width, initial-scale=1" />` on mobile pages, or avoid setting fixed widths and heights on your document, as that can result in poorly scaled interstitial ads.
+
+- **Web interstitial ads generate their own ad slot.** Unlike other ad types,
+  you don't need to define a `<div>` for web interstitial ads. These ads
+  automatically create and insert their own container into the page when an ad
+  fills.
+
+- **Web interstitial ads have a configurable
+  [frequency cap](https://support.google.com/admanager/answer/9840201#frequency).** This prevents the same user from
+  being shown an interstitial more than once per the specified window of time,
+  per subdomain. The default frequency cap is 1 impression per 10 minutes, and
+  the minimum allowed cap is 1 impression per 1 minute.
+
+- **Web interstitial ads require access to local storage.** For publishers
+  integrated with the
+  [IAB Transparency and Consent Framework v2.0](https://support.google.com/admanager/answer/9805023), this means
+  that consent for [Purpose 1](https://support.google.com/admanager/answer/9461778#purposes) is required for web
+  interstitial ads to function.
+
+- **Some links on a page might be ineligible to show web interstitial ads.**
+  Interstitial ads won't show when a user clicks an ineligible link, for
+  example, links to URLs without HTTP/HTTPS, and links that open in a new
+  window.
+
+  > [!NOTE]
+  > **Note:** You can prevent specific links from triggering GPT-managed web interstitials by adding a `data-google-interstitial="false"` attribute to the anchor element or any ancestor of the anchor element.
+
+- **If using single-request architecture (SRA) on a page with multiple slots,
+  don't call `display()` until static ad slots divs are created.** As
+  explained in [Ad Best Practices](https://developers.google.com/publisher-tag/guides/ad-best-practices#use_single_request_architecture_correctly), the first call to `display()`
+  requests every ad slot defined prior to that point. Although web
+  interstitial slots don't require a predefined `<div>`, static ad slots do.
+  Calling `display()` before these elements are present on the page can result
+  in lower quality signals, reducing monetization. Because of this, we
+  recommend delaying the initial call until after the static slots are
+  defined.
+

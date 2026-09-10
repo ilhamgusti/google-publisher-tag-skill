@@ -1,0 +1,10 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Sync cache
+docs/.cache/
+
+# OS artifacts
+.DS_Store
+Thumbs.db

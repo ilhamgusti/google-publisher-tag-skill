@@ -1,0 +1,11 @@
+# sync state (machine-local, regenerable via scripts/refetch.sh)
+.cache/
+
+# legacy raw-code scratch — runnable code now lives in samples/<name>/{js,legacyjs,ts}/
+# (maintained by scripts/refetch.sh). Kept on disk but not committed.
+_staging/
+
+# OS / editor noise
+.DS_Store
+*.swp
+*~

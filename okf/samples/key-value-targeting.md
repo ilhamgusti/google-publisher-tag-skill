@@ -1,0 +1,496 @@
+---
+type: Sample
+title: "Key-Value Targeting Sample"
+description: "Sample demonstrating page-level and slot-level targeting keys and values."
+resource: "https://developers.google.com/publisher-tag/samples/key-value-targeting"
+tags: [gpt, sample, key value targeting]
+timestamp: 2026-09-10T00:00:00Z
+---
+
+# Key-value targeting
+
+# Key-value targeting
+
+This example uses key-value targeting to control the ads eligible to serve to
+specific ad slots. See the [key-value targeting guide](https://developers.google.com/publisher-tag/guides/key-value-targeting) to learn
+more about how this sample works.
+
+
+## Sample implementation
+
+**Live demo:** [https://googleads.github.io/google-publisher-tag-samples/key-value-targeting/js/demo.html](https://googleads.github.io/google-publisher-tag-samples/key-value-targeting/js/demo.html)
+
+**Source:** [https://github.com/googleads/google-publisher-tag-samples/tree/main/dist/key-value-targeting](https://github.com/googleads/google-publisher-tag-samples/tree/main/dist/key-value-targeting)
+
+### JavaScript
+
+```html
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Use key-value targeting to control the ads eligible to serve to specific ad slots."
+    />
+    <title>Key-value targeting</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      // GPT slots
+      let adSlots = [];
+
+      googletag.cmd.push(() => {
+        // Configure slot-level targeting.
+        adSlots[0] = googletag
+          .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad-1")
+          .addService(googletag.pubads());
+        adSlots[0].setConfig({
+          targeting: {
+            color: "red",
+            position: "atf",
+          },
+        });
+
+        adSlots[1] = googletag
+          .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad-2")
+          .addService(googletag.pubads());
+        adSlots[1].setConfig({
+          targeting: {
+            position: "btf",
+          },
+        });
+
+        // Configure page-level targeting and enable SRA.
+        googletag.setConfig({
+          targeting: {
+            interests: "basketball",
+          },
+          singleRequest: true,
+        });
+
+        // Enable services.
+        googletag.enableServices();
+      });
+
+      function toggleTargeting() {
+        const button = this;
+
+        const isTargetingSet = button.getAttribute("data-enabled") === "true";
+        button.setAttribute("data-enabled", (!isTargetingSet).toString());
+
+        googletag.cmd.push(() => {
+          // Enable or disable targeting depending on the state of the page.
+          if (isTargetingSet) {
+            disableTargeting();
+          } else {
+            enableTargeting();
+          }
+
+          // Refresh all ads for targeting changes to take effect.
+          googletag.pubads().refresh();
+        });
+      }
+
+      function enableTargeting() {
+        // Reset slot- and page-level targeting to their original values.
+        adSlots[0].setConfig({
+          targeting: {
+            color: "red",
+          },
+        });
+        googletag.setConfig({
+          targeting: {
+            interests: "basketball",
+          },
+        });
+      }
+
+      function disableTargeting() {
+        // Step 1, clear slot-level color targeting.
+        adSlots[0].setConfig({
+          targeting: {
+            color: null,
+          },
+        });
+
+        // Step 2, clear all page-level targeting.
+        googletag.setConfig({
+          targeting: null,
+        });
+      }
+    </script>
+    <style>
+      .ads,
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      button::before {
+        content: "Disable ";
+        color: red;
+        font-weight: bold;
+      }
+
+      button[data-enabled="false"]::before {
+        content: "Enable ";
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ads">
+      <div id="banner-ad-1" style="width: 728px; height: 90px"></div>
+      <div id="banner-ad-2" style="width: 728px; height: 90px"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="targetingButton" data-enabled="true">targeting</button>
+    </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render all previously defined ad slots.
+        googletag.display("banner-ad-1");
+
+        // Register click event handlers.
+        document.getElementById("targetingButton").addEventListener("click", toggleTargeting);
+      });
+    </script>
+  </body>
+</html>
+```
+
+### JavaScript (legacy)
+
+```html
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Use key-value targeting to control the ads eligible to serve to specific ad slots."
+    />
+    <title>Key-value targeting</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.googletag = window.googletag || { cmd: [] };
+
+      // GPT slots
+      var adSlots = [];
+
+      googletag.cmd.push(function () {
+        // Configure slot-level targeting.
+        adSlots[0] = googletag
+          .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad-1")
+          .addService(googletag.pubads());
+        adSlots[0].setConfig({
+          targeting: {
+            color: "red",
+            position: "atf",
+          },
+        });
+
+        adSlots[1] = googletag
+          .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad-2")
+          .addService(googletag.pubads());
+        adSlots[1].setConfig({
+          targeting: {
+            position: "btf",
+          },
+        });
+
+        // Configure page-level targeting and enable SRA.
+        googletag.setConfig({
+          targeting: {
+            interests: "basketball",
+          },
+          singleRequest: true,
+        });
+
+        // Enable services.
+        googletag.enableServices();
+      });
+
+      function toggleTargeting() {
+        var button = this;
+
+        var isTargetingSet = button.getAttribute("data-enabled") === "true";
+        button.setAttribute("data-enabled", (!isTargetingSet).toString());
+
+        googletag.cmd.push(function () {
+          // Enable or disable targeting depending on the state of the page.
+          if (isTargetingSet) {
+            disableTargeting();
+          } else {
+            enableTargeting();
+          }
+
+          // Refresh all ads for targeting changes to take effect.
+          googletag.pubads().refresh();
+        });
+      }
+
+      function enableTargeting() {
+        // Reset slot- and page-level targeting to their original values.
+        adSlots[0].setConfig({
+          targeting: {
+            color: "red",
+          },
+        });
+        googletag.setConfig({
+          targeting: {
+            interests: "basketball",
+          },
+        });
+      }
+
+      function disableTargeting() {
+        // Step 1, clear slot-level color targeting.
+        adSlots[0].setConfig({
+          targeting: {
+            color: null,
+          },
+        });
+
+        // Step 2, clear all page-level targeting.
+        googletag.setConfig({
+          targeting: null,
+        });
+      }
+    </script>
+    <style>
+      .ads,
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      button::before {
+        content: "Disable ";
+        color: red;
+        font-weight: bold;
+      }
+
+      button[data-enabled="false"]::before {
+        content: "Enable ";
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ads">
+      <div id="banner-ad-1" style="width: 728px; height: 90px"></div>
+      <div id="banner-ad-2" style="width: 728px; height: 90px"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="targetingButton" data-enabled="true">targeting</button>
+    </div>
+    <script>
+      googletag.cmd.push(function () {
+        // Request and render all previously defined ad slots.
+        googletag.display("banner-ad-1");
+
+        // Register click event handlers.
+        document.getElementById("targetingButton").addEventListener("click", toggleTargeting);
+      });
+    </script>
+  </body>
+</html>
+```
+
+### TypeScript
+
+`ts/index.html`:
+
+
+```html
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2022 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Use key-value targeting to control the ads eligible to serve to specific ad slots."
+    />
+    <title>Key-value targeting</title>
+    <script
+      async
+      src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="/sample.ts"></script>
+    <style>
+      .ads,
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      button::before {
+        content: "Disable ";
+        color: red;
+        font-weight: bold;
+      }
+
+      button[data-enabled="false"]::before {
+        content: "Enable ";
+        color: green;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ads">
+      <div id="banner-ad-1" style="width: 728px; height: 90px"></div>
+      <div id="banner-ad-2" style="width: 728px; height: 90px"></div>
+    </div>
+
+    <div class="buttons">
+      <button id="targetingButton" data-enabled="true">targeting</button>
+    </div>
+  </body>
+</html>
+```
+
+`ts/sample.ts`:
+
+
+```typescript
+/**
+ * @license
+ * Copyright 2022 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+// Using @types/google-publisher-tag
+// https://www.npmjs.com/package/@types/google-publisher-tag
+
+window.googletag = window.googletag || { cmd: [] };
+
+// GPT slots
+let adSlots: googletag.Slot[] = [];
+
+googletag.cmd.push(() => {
+  // Configure slot-level targeting.
+  adSlots[0] = googletag
+    .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad-1")!
+    .addService(googletag.pubads());
+  adSlots[0].setConfig({
+    targeting: {
+      color: "red",
+      position: "atf",
+    },
+  });
+
+  adSlots[1] = googletag
+    .defineSlot("/6355419/Travel/Asia", [728, 90], "banner-ad-2")!
+    .addService(googletag.pubads());
+  adSlots[1].setConfig({
+    targeting: {
+      position: "btf",
+    },
+  });
+
+  // Configure page-level targeting and enable SRA.
+  googletag.setConfig({
+    targeting: {
+      interests: "basketball",
+    },
+    singleRequest: true,
+  });
+
+  // Enable services.
+  googletag.enableServices();
+
+  // Request and render all previously defined ad slots.
+  googletag.display("banner-ad-1");
+});
+
+function toggleTargeting(this: HTMLButtonElement) {
+  const button = this;
+
+  const isTargetingSet = button.getAttribute("data-enabled") === "true";
+  button.setAttribute("data-enabled", (!isTargetingSet).toString());
+
+  googletag.cmd.push(() => {
+    // Enable or disable targeting depending on the state of the page.
+    if (isTargetingSet) {
+      disableTargeting();
+    } else {
+      enableTargeting();
+    }
+
+    // Refresh all ads for targeting changes to take effect.
+    googletag.pubads().refresh();
+  });
+}
+
+function enableTargeting() {
+  // Reset slot- and page-level targeting to their original values.
+  adSlots[0].setConfig({
+    targeting: {
+      color: "red",
+    },
+  });
+  googletag.setConfig({
+    targeting: {
+      interests: "basketball",
+    },
+  });
+}
+
+function disableTargeting() {
+  // Step 1, clear slot-level color targeting.
+  adSlots[0].setConfig({
+    targeting: {
+      color: null,
+    },
+  });
+
+  // Step 2, clear all page-level targeting.
+  googletag.setConfig({
+    targeting: null,
+  });
+}
+
+// Register click event handlers.
+document.getElementById("targetingButton")!.addEventListener("click", toggleTargeting);
+```
