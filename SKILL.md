@@ -14,7 +14,7 @@ This skill provides direct access to the official Google Publisher Tag (GPT) and
 The canonical documentation mirror is maintained in:
 - **Repository-relative path:** `docs/` (when working within this repository or a project containing a GPT mirror)
 - **Skill package reference:** `<repo-root>/docs/` or `<skill-dir>/docs/`
-
+- **Fallback:** If `docs/` is not present in the current workspace, clone the reference mirror from `https://github.com/ilhamgusti/google-publisher-tag-skill` or access the installed skill directory.
 > **Note on Upstream Sync:**
 > `docs/` is a byte-identical mirror of official Google Publisher Tag documentation.
 > Run `./docs/scripts/refetch.sh` to pull upstream updates, followed by `python3 scripts/build-okf.py` to rebuild the OKF bundle.
