@@ -1,106 +1,126 @@
 # Google Publisher Tag (GPT) — Documentation Mirror, Agent Skill & OKF Bundle
 
-Repositori komprehensif dokumentasi resmi [Google Publisher Tag (GPT)](https://developers.google.com/publisher-tag), dikemas dalam **dua mode konsumsi untuk AI coding agents**:
-1. **Agent Skill (`SKILL.md`)** — Format standar open agent skills dengan task routing dan panduan anti-pitfalls.
-2. **Open Knowledge Format Bundle (`okf/`)** — Format terbuka OKF v0.1 dengan YAML frontmatter pada setiap konsep untuk LLM semantic search / wiki ingestion.
+A comprehensive developer resource for [Google Publisher Tag (GPT)](https://developers.google.com/publisher-tag) and Google Ad Manager, packaged for AI coding agents and developers in **two interoperable consumption modes**:
 
-Serta mempertahankan **Live Mirror (`docs/`)** yang byte-identik dengan upstream Google Developers.
+1. **Agent Skill (`SKILL.md`)** — Standard open agent skill format with task-based routing tables and implementation guardrails.
+2. **Open Knowledge Format Bundle (`okf/`)** — An [Open Knowledge Format (OKF v0.1)](https://github.com/fabricioctelles/skills) bundle featuring structured YAML frontmatter on every concept, ready for semantic vector/BM25 search and LLM wiki ingestion.
+
+The repository also maintains a **Live Upstream Mirror (`docs/`)** that remains 100% byte-identical to Google Developers documentation and GitHub sample repositories.
 
 ---
 
-## Arsitektur Repositori
+## Repository Architecture
 
 ```
 google-publisher-tag/
 ├── SKILL.md                 # Mode 1: Agent Skill entry point & router
 ├── okf/                     # Mode 2: Open Knowledge Format (OKF v0.1) bundle
-│   ├── index.md             # Bundle root index (okf_version: "0.1")
+│   ├── index.md             # Root progressive disclosure index (okf_version: "0.1")
 │   ├── log.md               # Chronological update log (ISO 8601)
-│   ├── guides/              # 16 OKF concepts untuk guides
-│   ├── samples/             # 20+ OKF concepts + runnable code JS/TS
-│   └── support/             # OKF concepts browser & support
-├── docs/                    # Live mirror resmi (byte-identik)
-│   ├── README.md            # Dokumentasi struktur mirror
-│   ├── reference.md         # Full TypeScript API reference (8200+ baris)
+│   ├── guides/              # 16 OKF concepts for guides
+│   ├── samples/             # 24 OKF concepts + runnable JS/TS code
+│   └── support/             # Browser support & developer feedback concepts
+├── docs/                    # Official live mirror (byte-identical)
+│   ├── README.md            # Upstream mirror structure & guidelines
+│   ├── reference.md         # Full TypeScript API reference (8,200+ lines)
 │   ├── guides/              # 16 official guides
-│   ├── samples/             # 20+ runnable samples
+│   ├── samples/             # 24 sample guides with runnable code
 │   ├── support/             # Browser support & feedback
 │   └── scripts/             # refetch.sh & check-links.sh
 └── scripts/
-    └── build-okf.py         # Generator OKF bundle dari docs/
+    └── build-okf.py         # Automated OKF bundle generator from docs/
 ```
 
 ---
 
 ## Mode 1: Agent Skill (`SKILL.md`)
 
-Dirancang untuk AI coding agents (Claude Code, Cursor, Windsurf, Oh My Pi, Herdr).
+Designed for AI coding agents such as Claude Code, Cursor, Windsurf, Oh My Pi, and Herdr.
 
-### Fitur Skill:
-- **Task Routing Table**: Memetakan intent developer (misal "setup lazy loading", "anti CLS", "interstitial ad") ke file panduan dan sampel kode yang tepat tanpa membuang context window.
-- **Critical GPT Invariants**: Rule guardrails yang harus dipatuhi AI agent:
-  1. Queue pattern (`window.googletag = window.googletag || { cmd: [] }; googletag.cmd.push(...)`)
-  2. Urutan eksekusi: Page Settings $\rightarrow$ Define Slots $\rightarrow$ `enableServices()` $\rightarrow$ `display()`
-  3. Pengecekan API ready via `googletag.apiReady`, bukan `typeof googletag !== 'undefined'`
-  4. Anti-CLS space reservation sebelum display
+### Skill Highlights:
+- **Task Routing Table**: Directs agent attention to exact guides and samples based on developer intent (e.g., lazy loading, responsive sizing, CLS mitigation, interstitial ads) without context window bloat.
+- **Core GPT Guardrails**: Enforces critical rules:
+  1. Asynchronous command queue: `window.googletag = window.googletag || { cmd: [] }; googletag.cmd.push(...)`
+  2. Execution order: Page Settings $\rightarrow$ Define Slots $\rightarrow$ `enableServices()` $\rightarrow$ `display()`
+  3. API readiness check via `googletag.apiReady` (never `typeof googletag !== 'undefined'`)
+  4. Anti-CLS slot space reservation prior to rendering
 
-### Instalasi Skill (Global):
+### Installing the Skill
+
+**Global installation (for your agent ecosystem):**
 ```bash
 mkdir -p ~/.agents/skills/google-publisher-tag
 cp SKILL.md ~/.agents/skills/google-publisher-tag/
 ```
-Atau symlink repository ini ke `~/.agents/skills/google-publisher-tag`.
+Or symlink this repository directly:
+```bash
+ln -s "$(pwd)" ~/.agents/skills/google-publisher-tag
+```
 
 ---
 
 ## Mode 2: Open Knowledge Format Bundle (`okf/`)
 
-Dirancang untuk agent wiki / semantic knowledge engine berstandar [Open Knowledge Format (OKF v0.1)](https://github.com/fabricioctelles/skills).
+Designed for agent wikis, vector search, and organizational knowledge engines conforming to the [Open Knowledge Format (OKF v0.1)](https://github.com/fabricioctelles/skills) specification.
 
-### Fitur OKF Bundle:
-- **100% Conformance OKF v0.1**: Lolos validasi `okflint` dan `validate.sh` tanpa error maupun warning.
-- **75 Dokumen Konsep**: Setiap `.md` memiliki YAML frontmatter:
+### Bundle Highlights:
+- **100% OKF v0.1 Conformance**: Verified with zero errors and zero warnings:
+  ```bash
+  validate.sh okf/
+  # Files scanned: 53
+  # ✅ Bundle is OKF v0.1 conformant
+  ```
+- **53 Concept Documents**: Every markdown concept contains structured YAML frontmatter:
   - `type`: `Guide`, `API Reference`, `Sample`, `Troubleshooting`, `Best Practice`, `Support`
-  - `title`: Judul deskriptif manusiawi
-  - `description`: Ringkasan satu kalimat
-  - `resource`: URL resmi dokumentasi Google
-  - `tags`: Tag kategorisasi untuk indexing semantik
-  - `timestamp`: ISO 8601
-- **Progressive Disclosure**: Sub-index di `okf/guides/index.md`, `okf/samples/index.md`, dan `okf/support/index.md`.
-- **Runnable Code**: Disertakan langsung di samping setiap konsep sampel (`js/demo.html`, `ts/index.html`, `ts/sample.ts`).
+  - `title`: Human-readable display name
+  - `description`: Single-sentence summary
+  - `resource`: Canonical Google Developers URL
+  - `tags`: Domain taxonomy tags
+  - `timestamp`: ISO 8601 timestamp
+- **Progressive Disclosure**: Sub-index directories at `okf/guides/index.md`, `okf/samples/index.md`, and `okf/support/index.md`.
+- **Runnable Code**: Preserved alongside sample concepts (`js/demo.html`, `ts/index.html`, `ts/sample.ts`).
 
-### Validasi Bundle:
+### Validating Conformance:
 ```bash
-# Validasi via OKF validator script
+# Using the OKF validator script
 bash path/to/validate.sh okf/
 
-# Atau via okflint (jika terinstall)
+# Or using okflint (if installed)
 okflint validate okf/
 ```
 
 ---
 
-## Live Mirror (`docs/`) & Upstream Sync
+## Upstream Synchronization Pipeline
 
-Folder `docs/` sengaja dijaga **100% byte-identik** dengan endpoint upstream Google Developers (`.md.txt` dan repo GitHub `google-publisher-tag-samples`), sehingga sinkronisasi selalu berupa **clean cutover** tanpa konflik modifikasi manual.
+The `docs/` directory is deliberately kept **100% byte-identical** to Google Developers source endpoints (`.md.txt` and `googleads/google-publisher-tag-samples`). This ensures all automated updates are **clean cutovers** without merge conflicts.
 
-### Sinkronisasi Otomatis:
+### Sync Workflow:
+
 ```bash
-# 1. Cek apakah ada update baru di release notes Atom feed
+# 1. Check if upstream Atom feed has newer releases
 ./docs/scripts/refetch.sh --check
 
-# 2. Refetch jika ada rilis baru (atau gunakan --force untuk paksa)
+# 2. Inspect release note entries published since last sync
+./docs/scripts/refetch.sh --diff
+
+# 3. Pull latest documentation and samples
 ./docs/scripts/refetch.sh
 
-# 3. Validasi keutuhan relative link docs
+# 4. Verify relative link integrity
 ./docs/scripts/check-links.sh
+```
 
-# 4. Rebuild bundle OKF agar selalu mutakhir
+### Automated Rebuild Hook:
+`./docs/scripts/refetch.sh` automatically invokes `scripts/build-okf.py` upon completing a successful fetch, ensuring the OKF bundle stays up to date without manual intervention.
+
+To trigger the OKF generator manually:
+```bash
 python3 scripts/build-okf.py
 ```
 
 ---
 
-## Lisensi
-- Konten Dokumentasi: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) oleh Google LLC.
-- Kode Sampel: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+## License
+- Documentation Content: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) by Google LLC.
+- Sample Code: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0).

@@ -12,8 +12,8 @@ This skill provides direct access to the official Google Publisher Tag (GPT) and
 ## Documentation Location
 
 The canonical documentation mirror is maintained in:
-- **Workspace-relative path:** `docs/` (when working within this repository)
-- **Local repository path:** `/home/ilham/workspace/projects/google-publisher-tag/docs/`
+- **Repository-relative path:** `docs/` (when working within this repository or a project containing a GPT mirror)
+- **Skill package reference:** `<repo-root>/docs/` or `<skill-dir>/docs/`
 
 > **Note on Upstream Sync:**
 > `docs/` is a byte-identical mirror of official Google Publisher Tag documentation.

@@ -35,6 +35,44 @@ encounter changes at different times. The dates provided in these release notes
 reflect the start of the week in which a change finished rolling out to *all*
 users.
 
+## Week of August 31, 2026
+
+Feature
+Google Publisher Tag (GPT) now automatically requests its core
+implementation script (`pubads_impl.js`) with high fetch
+priority by setting
+[`fetchpriority="high"`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/fetchpriority)
+on the dynamically inserted script element. This instructs browser network
+schedulers to prioritize fetching the implementation library, reducing ad
+loading latency on the critical rendering path, increasing impressions and
+clicks, with minimal impact to Core Web Vital metrics.
+
+
+Publishers can configure or override this behavior by adding the
+`fetchpriority` attribute directly to the `gpt.js`
+loader `<script>` tag on their pages. The dynamically
+injected implementation script will automatically inherit the
+`fetchpriority` attribute value specified on the loader script
+(for example, `fetchpriority="low"` or
+`fetchpriority="auto"`).
+
+## Week of August 24, 2026
+
+Announcement
+Starting September 8, 2026, Google Publisher Tag (GPT) will automatically refresh
+actively viewed ad slots when a user returns to a page through back/forward
+cache (bfcache) navigation. By automatically refreshing these slots,
+publishers can seamlessly recapture impressions, which can help grow ad revenue.
+Publishers who need to disable automatic refreshes on back/forward cache
+navigation can do so through the GPT
+[`AutoRefreshConfig`](https://developers.google.com/publisher-tag/reference#googletag.config.AutoRefreshConfig)
+API.
+Feature
+
+| New in GPT ||
+|---|---|
+| Property | [`AutoRefreshConfig.backForwardCache`](https://developers.google.com/publisher-tag/reference#googletag.config.AutoRefreshConfig.backForwardCache) |
+
 ## Week of May 18, 2026
 
 Announcement

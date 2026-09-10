@@ -95,7 +95,7 @@ The global namespace the Google Publisher Tag uses for its API.
 
 #### FluidSize
 
-`FluidSize: "fluid"`The size string where the ad container takes 100% width of its parent div and then resizes its height to fit the creative content. Similar to how regular block elements on a page behave. Used for native ads (see [related article](https://support.google.com/admanager/answer/6366845)).
+`FluidSize: "fluid"`The size string where the ad container takes 100% width of its parent div and then resizes its height to fit the creative content. Similar to how regular block elements on a page behave. Used for native and banner ads (see [related article](https://support.google.com/admanager/answer/6366845)).
 
 *** ** * ** ***
 
@@ -115,7 +115,7 @@ The global namespace the Google Publisher Tag uses for its API.
 
 `NamedSize: https://developers.google.com/publisher-tag/reference#googletag.FluidSize | [https://developers.google.com/publisher-tag/reference#googletag.FluidSize]`Named sizes that a slot can have. In most cases size is a fixed-size rectangle but there are some cases when we need other kinds of size specifications. Only the following are valid named sizes:
 
-- **fluid** : the ad container takes 100% width of its parent div and then resizes its height to fit the creative content. Similar to how regular block elements on a page behave. Used for native ads (see [related article](https://support.google.com/admanager/answer/6366845)). Note that both `fluid` and `['fluid']` are acceptable forms to declare a slot size as fluid.
+- **fluid** : the ad container takes 100% width of its parent div and then resizes its height to fit the creative content. Similar to how regular block elements on a page behave. Used for native and banner ads (see [related article](https://support.google.com/admanager/answer/6366845)). Note that both `fluid` and `['fluid']` are acceptable forms to declare a slot size as fluid.
 
 *** ** * ** ***
 
@@ -710,9 +710,9 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.Service
 
 | Methods ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` | Registers a listener that allows you to set up and call a JavaScript function when a specific GPT event happens on the page. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` |
-| `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` | Get the list of slots associated with this service. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` |
-| `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` | Removes a previously registered listener. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` |
+| `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` | Registers a listener that allows you to set up and call a JavaScript function when a specific GPT event happens on the page. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` method |
+| `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` | Get the list of slots associated with this service. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` method |
+| `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` | Removes a previously registered listener. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` method |
 | `https://developers.google.com/publisher-tag/reference#googletag.CompanionAdsService.setRefreshUnfilledSlots` | Sets whether companion slots that have not been filled will be automatically backfilled. |
 
 See also
@@ -966,7 +966,7 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.Service
 
 | Methods ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` | Registers a listener that allows you to set up and call a JavaScript function when a specific GPT event happens on the page. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` |
+| `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` | Registers a listener that allows you to set up and call a JavaScript function when a specific GPT event happens on the page. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.Service.addEventListener` method |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.clear` | Removes the ads from the given slots and replaces them with blank content. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.clearCategoryExclusions` | **Deprecated.**Clears all page-level ad category exclusion labels. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.clearTargeting` | **Deprecated.**Clears custom targeting parameters for a specific key or for all keys. |
@@ -978,12 +978,12 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.Service
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.enableVideoAds` | **Deprecated.**Signals to GPT that video ads will be present on the page. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.get` | **Deprecated.**Returns the value for the AdSense attribute associated with the given key. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.getAttributeKeys` | **Deprecated.**Returns the attribute keys that have been set on this service. |
-| `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` | Get the list of slots associated with this service. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` |
+| `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` | Get the list of slots associated with this service. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.Service.getSlots` method |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.getTargeting` | **Deprecated.**Returns a specific custom service-level targeting parameter that has been set. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.getTargetingKeys` | **Deprecated.**Returns the list of all custom service-level targeting keys that have been set. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.isInitialLoadDisabled` | **Deprecated.** Returns whether or not initial requests for ads was successfully disabled by a previous [PubAdsService.disableInitialLoad](https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.disableInitialLoad) call. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.refresh` | Fetches and displays new ads for specific or all slots on the page. |
-| `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` | Removes a previously registered listener. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` |
+| `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` | Removes a previously registered listener. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.Service.removeEventListener` method |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.set` | **Deprecated.**Sets values for AdSense attributes that apply to all ad slots under the Publisher Ads service. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.setCategoryExclusion` | **Deprecated.**Sets a page-level ad category exclusion for the given label name. |
 | `https://developers.google.com/publisher-tag/reference#googletag.PubAdsService.setCentering` | **Deprecated.**Enables and disables horizontal centering of ads. |
@@ -4396,6 +4396,7 @@ Main configuration interface for page-level settings.
 | `https://developers.google.com/publisher-tag/reference#googletag.config.AdExpansionConfig` | Settings to control ad expansion. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.AdSenseAttributesConfig` | Settings to control the behavior of AdSense ads. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.AutoRefreshConfig` | Auto refresh configuration settings. |
+| `https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig` | Settings to configure the continue button behavior. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.InterstitialConfig` | An object which defines the behavior of a single interstitial ad slot. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.LazyLoadConfig` | Settings to control the use of lazy loading in GPT. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.PageSettingsConfig` | Main configuration interface for page-level settings. |
@@ -4430,7 +4431,7 @@ See also
 
 #### InterstitialTrigger
 
-`InterstitialTrigger: "unhideWindow" | "navBar" | "inactivity" | "endOfArticle" | "backward"`Supported interstitial ad triggers.  
+`InterstitialTrigger: "unhideWindow" | "navBar" | "inactivity" | "endOfArticle" | "continueReading" | "backward"`Supported interstitial ad triggers.  
 
 **Note** : Beginning June 15, 2026, the `backward` trigger will no longer be supported and enabling it will have no effect. See the [GPT release notes](https://developers.google.com/publisher-tag/release-notes#2026-05-18) for more information.
 
@@ -4589,9 +4590,56 @@ Auto refresh configuration settings.
 
 | Properties ||
 |---|---|
+| `https://developers.google.com/publisher-tag/reference#googletag.config.AutoRefreshConfig.backForwardCache` | Whether GPT will automatically refresh an actively viewed ad slot when the page is restored from the back/forward cache. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.AutoRefreshConfig.heavyAds` | Whether GPT will automatically refresh an ad slot if Chrome's Heavy Ad Intervention triggers on the slot's ad iframe. |
 
 ### Properties
+
+*** ** * ** ***
+
+#### `Optional` backForwardCache
+
+`backForwardCache?: boolean`Whether GPT will automatically refresh an actively viewed ad slot when the page is restored from the back/forward cache. Defaults to `true`.
+
+Example
+:
+
+    ### JavaScript
+
+    ```javascript
+    // Set the auto refresh configuration, disabling auto refresh on
+    // back/forward cache restore.
+    googletag.setConfig({ autoRefresh: { backForwardCache: false } });
+
+    // Clear the auto refresh configuration, restoring to default behavior.
+    googletag.setConfig({ autoRefresh: null });
+    ```
+
+    ### JavaScript (legacy)
+
+    ```javascript
+    // Set the auto refresh configuration, disabling auto refresh on
+    // back/forward cache restore.
+    googletag.setConfig({ autoRefresh: { backForwardCache: false } });
+
+    // Clear the auto refresh configuration, restoring to default behavior.
+    googletag.setConfig({ autoRefresh: null });
+    ```
+
+    ### TypeScript
+
+    ```typescript
+    // Set the auto refresh configuration, disabling auto refresh on
+    // back/forward cache restore.
+    googletag.setConfig({ autoRefresh: { backForwardCache: false } });
+
+    // Clear the auto refresh configuration, restoring to default behavior.
+    googletag.setConfig({ autoRefresh: null });
+    ```
+
+See also
+:
+    - [Back/forward cache](https://web.dev/articles/bfcache)
 
 *** ** * ** ***
 
@@ -4638,6 +4686,64 @@ Example
 See also
 :
     - [Understand Chrome's Heavy Ad Interventions](https://developer.chrome.com/docs/web-platform/heavy-ads-intervention)
+
+*** ** * ** ***
+
+## googletag.config.ContinueButtonConfig
+
+Settings to configure the continue button behavior.
+
+| Properties ||
+|---|---|
+| `https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig.backgroundColor` | The background color of the button. |
+| `https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig.font` | The font family of the button text. |
+| `https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig.fontColor` | The text color of the button. |
+| `https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig.freqCapIntervalMinutes` | The frequency capping interval in minutes. |
+| `https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig.targetId` | The ID of the HTML element on which to render/trigger the continue button. |
+
+See also
+:
+    - [SlotSettingsConfig.continueButton](https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.continueButton)
+
+### Properties
+
+*** ** * ** ***
+
+#### `Optional` backgroundColor
+
+`backgroundColor?: string`The background color of the button.  
+
+Example: `'blue'`, `'#94B1FF'`
+
+*** ** * ** ***
+
+#### `Optional` font
+
+`font?: string`The font family of the button text.  
+
+Example: `'Arial'`
+
+*** ** * ** ***
+
+#### `Optional` fontColor
+
+`fontColor?: string`The text color of the button.  
+
+Example: `'white'`, `'#B73B87'`
+
+*** ** * ** ***
+
+#### `Optional` freqCapIntervalMinutes
+
+`freqCapIntervalMinutes?: number`The frequency capping interval in minutes.  
+
+Must be an integer greater than or equal to 1.
+
+*** ** * ** ***
+
+#### `Optional` targetId
+
+`targetId?: string`The ID of the HTML element on which to render/trigger the continue button.
 
 *** ** * ** ***
 
@@ -5939,6 +6045,7 @@ Examples:
 | `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.categoryExclusion` | Setting to configure ad category exclusions. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.clickUrl` | Setting to configure the URL to which users will be redirected after clicking on the ad. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.collapseDiv` | Setting to configure the collapsing behavior of the ad slot. |
+| `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.continueButton` | Settings to configure the continue button behavior for content pause ads. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.interstitial` | Settings that configure interstitial ad slot behavior. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.safeFrame` | Settings to configure the use of [SafeFrame](https://support.google.com/admanager/answer/6023110) in GPT. |
 | `https://developers.google.com/publisher-tag/reference#googletag.config.SlotSettingsConfig.targeting` | Setting to configure key-value targeting. |
@@ -6271,6 +6378,84 @@ See also
 :
     - [Collapse empty ad slots](https://developers.google.com/publisher-tag/samples/collapse-empty-ad-slots)
     - [Minimize layout shift](https://developers.google.com/publisher-tag/guides/minimize-layout-shift)
+
+*** ** * ** ***
+
+#### `Optional` continueButton
+
+`continueButton?: https://developers.google.com/publisher-tag/reference#googletag.config.ContinueButtonConfig`Settings to configure the continue button behavior for content pause ads.  
+
+These settings allow customizing the appearance and behavior of the exit and continue reading interactions associated with content pause formats.  
+
+Any continue button settings which are not specified when calling `setConfig()` will use a default value set by Google.  
+
+To disable or clear all continue button settings, pass `null`.
+
+Example
+:
+
+    ### JavaScript
+
+    ```javascript
+    const slot = googletag
+      .defineSlot("/1234567/sports", [160, 600], "div")
+      .addService(googletag.pubads());
+    // Configure continue button settings.
+    slot.setConfig({
+      continueButton: {
+        font: "Arial",
+        fontColor: "white",
+        backgroundColor: "blue",
+        targetId: "target-div-id",
+        freqCapIntervalMinutes: 20,
+      },
+    });
+
+    // Clear continue button settings.
+    slot.setConfig({ continueButton: null });
+    ```
+
+    ### JavaScript (legacy)
+
+    ```javascript
+    var slot = googletag
+      .defineSlot("/1234567/sports", [160, 600], "div")
+      .addService(googletag.pubads());
+    // Configure continue button settings.
+    slot.setConfig({
+      continueButton: {
+        font: "Arial",
+        fontColor: "white",
+        backgroundColor: "blue",
+        targetId: "target-div-id",
+        freqCapIntervalMinutes: 20,
+      },
+    });
+
+    // Clear continue button settings.
+    slot.setConfig({ continueButton: null });
+    ```
+
+    ### TypeScript
+
+    ```typescript
+    const slot = googletag
+      .defineSlot("/1234567/sports", [160, 600], "div")!
+      .addService(googletag.pubads());
+    // Configure continue button settings.
+    slot.setConfig({
+      continueButton: {
+        font: "Arial",
+        fontColor: "white",
+        backgroundColor: "blue",
+        targetId: "target-div-id",
+        freqCapIntervalMinutes: 20,
+      },
+    });
+
+    // Clear continue button settings.
+    slot.setConfig({ continueButton: null });
+    ```
 
 *** ** * ** ***
 
@@ -6748,8 +6933,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -6841,8 +7026,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 | Methods ||
 |---|---|
@@ -6981,8 +7166,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7044,8 +7229,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7136,8 +7321,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 | Properties ||
 |---|---|
 | `https://developers.google.com/publisher-tag/reference#googletag.events.RewardedSlotGrantedEvent.payload` | An object containing information about the reward that was granted. |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7257,8 +7442,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 | Methods ||
 |---|---|
@@ -7391,8 +7576,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7485,8 +7670,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7558,9 +7743,9 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.labelIds` | **Deprecated.** |
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.lineItemId` | Line item ID of the rendered reservation ad. |
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.responseIdentifier` | The response identifier is a unique identifier for the ad response. |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.size` | Indicates the pixel size of the rendered creative. |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.slotContentChanged` | Whether the slot content was changed with the rendered ad. |
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.sourceAgnosticCreativeId` | Creative ID of the rendered reservation or backfill ad. |
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotRenderEndedEvent.sourceAgnosticLineItemId` | Line item ID of the rendered reservation or backfill ad. |
@@ -7769,8 +7954,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7841,8 +8026,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 
 | Properties ||
 |---|---|
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :
@@ -7908,8 +8093,8 @@ Extends `https://developers.google.com/publisher-tag/reference#googletag.events.
 | Properties ||
 |---|---|
 | `https://developers.google.com/publisher-tag/reference#googletag.events.SlotVisibilityChangedEvent.inViewPercentage` | The percentage of the ad's area that is visible. |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` |
-| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` | Name of the service that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.serviceName` property |
+| `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` | The slot that triggered the event. ###### Inherited from the `https://developers.google.com/publisher-tag/reference#googletag.events.Event.slot` property |
 
 Example
 :

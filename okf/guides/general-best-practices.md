@@ -7,8 +7,6 @@ tags: [gpt, best-practices, performance, optimization]
 timestamp: 2026-09-10T00:00:00Z
 ---
 
-# General Best Practices
-
 Integrating the Google Publisher Tag (GPT) library into your website
 is in many ways the same as integrating any other third-party script. However,
 there are some unique aspects of working with GPT that must be
@@ -107,6 +105,29 @@ needed.
 
 > [!NOTE]
 > **Note:** preload links are not respected by all browsers. See [Can I Use link-rel-preload?](https://caniuse.com/#feat=link-rel-preload) for an overview of browser support.
+
+### Use `fetchpriority` to prioritize script loading
+
+You can use the [`fetchpriority`](https://developer.mozilla.org/docs/Web/HTML/Reference/Attributes/fetchpriority) attribute to signal to the
+browser the relative priority of fetching GPT resources. By
+default, `gpt.js` automatically requests its core implementation script
+(`pubads_impl.js`) with `fetchpriority="high"` to optimize network scheduling
+and reduce ad loading latency. Increasing priority may impact loading of other
+resources on the page and
+[Core Web Vitals metrics](https://developers.google.com/publisher-tag/guides/minimize-layout-shift#measure). To maximize
+latency impact of `fetchpriority` set to high, we recommend setting on `gpt.js`
+directly.
+
+To prioritize fetching the `gpt.js` loader script itself (or to configure the
+inherited priority of `pubads_impl.js`), you can add the `fetchpriority`
+attribute directly to the `gpt.js` `<script>` tag:
+
+    <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js" fetchpriority="high"></script>
+
+When you specify the `fetchpriority` attribute on the `gpt.js` loader
+`<script>` tag, the dynamically inserted implementation script automatically
+inherits the specified `fetchpriority` value (such as `"high"`, `"low"`, or
+`"auto"`).
 
 ### Use GPT on prerendered pages
 

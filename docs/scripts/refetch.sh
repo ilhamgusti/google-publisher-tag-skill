@@ -88,8 +88,8 @@ if [ "$DIFF" = 1 ]; then
   else
     awk -v cut="$old_updated" '
       /<entry>/ {e=1; t=""; u=""}
-      /<title>/  && e {gsub(/<\/?title>/,"");  t=$0}
-      /<updated>/ && e {gsub(/<\/?updated>/,""); u=$0}
+      /<title>/ && e {gsub(/<\/?title>|^[ \t]+|[ \t]+$/,""); t=$0}
+      /<updated>/ && e {gsub(/<\/?updated>|^[ \t]+|[ \t]+$/,""); u=$0}
       /<\/entry>/ && e {e=0; if (u>cut) printf "  • %s  (%s)\n", t, u}
     ' "$CACHE_DIR/feed-atom.new.xml"
   fi

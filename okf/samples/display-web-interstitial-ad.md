@@ -23,6 +23,7 @@ The following user actions are eligible to trigger a web interstitial ad:
 | Clicking, scrolling, or typing after being inactive for at least 30 seconds. | `inactivity` | Disabled | Yes |
 | Clicking on the browser navigation bar. (Desktop only) | `navBar` | Disabled | Yes |
 | Hiding and then returning to the page (for example, by switching tabs). | `unhideWindow` | Disabled | Yes |
+| Clicking a GPT-created **View ad to continue** button. | `continueReading` | Disabled | Yes |
 
 > [!IMPORTANT]
 > **Important:** Default trigger states are [configurable in Google Ad Manager](https://support.google.com/admanager/answer/9840201). If these values have been modified for your Ad Manager account, they may not match the preceding table.

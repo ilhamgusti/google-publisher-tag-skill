@@ -7,8 +7,6 @@ tags: [gpt, anti-patterns, pitfalls, troubleshooting, bugs]
 timestamp: 2026-09-10T00:00:00Z
 ---
 
-# Avoiding Common Implementation Mistakes
-
 The following scenarios represent some of the most common mistakes observed when
 implementing GPT. While such implementations may appear to function well with the current
 version of GPT, it is not guaranteed that they will continue to do so in the future. In the
