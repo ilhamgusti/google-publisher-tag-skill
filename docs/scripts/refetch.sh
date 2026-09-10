@@ -152,3 +152,10 @@ for s in "${SAMPLES[@]}"; do regen_sample "$s"; done
 mv "$CACHE_DIR/feed-atom.new.xml" "$CACHE_DIR/feed-atom.xml"
 echo "$new_updated" > "$CACHE_DIR/feed-updated"
 echo "→ done. $old_updated → $new_updated"
+
+# ── 5. rebuild OKF bundle hook ────────────────────────────────────────────────
+OKF_BUILDER="$DOCS_DIR/../scripts/build-okf.py"
+if [ -f "$OKF_BUILDER" ] && command -v python3 >/dev/null 2>&1; then
+  echo "→ rebuilding OKF bundle..."
+  python3 "$OKF_BUILDER"
+fi

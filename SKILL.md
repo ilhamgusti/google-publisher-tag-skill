@@ -11,12 +11,14 @@ This skill provides direct access to the official Google Publisher Tag (GPT) and
 
 ## Documentation Location
 
-The canonical live documentation mirror is maintained in:
-- **Workspace-relative path:** `docs/` (when working within this repository or related GPT projects)
-- **Canonical local path:** `/home/ilham/workspace/projects/google-publisher-tag/docs/` (or fallback `/home/ilham/workspace/projects/googleadsmanager/docs/`)
-> **Critical Invariant:**
-> The `docs/` folder is a byte-identical live mirror synchronized via `docs/scripts/refetch.sh`.
-> **NEVER** edit files in `docs/` or inject YAML frontmatter into them; they must remain byte-identical to upstream for clean cutover during automated refetches.
+The canonical documentation mirror is maintained in:
+- **Workspace-relative path:** `docs/` (when working within this repository)
+- **Local repository path:** `/home/ilham/workspace/projects/google-publisher-tag/docs/`
+
+> **Note on Upstream Sync:**
+> `docs/` is a byte-identical mirror of official Google Publisher Tag documentation.
+> Run `./docs/scripts/refetch.sh` to pull upstream updates, followed by `python3 scripts/build-okf.py` to rebuild the OKF bundle.
+> **NEVER** edit files in `docs/` directly or inject YAML frontmatter into them, keeping them byte-identical to upstream for clean cutover.
 > Always read files on demand from `docs/`.
 
 ---

@@ -1,9 +1,11 @@
 # Python
 __pycache__/
 *.py[cod]
-
-# Sync cache
+# Sync cache & scratch
 docs/.cache/
+*_staging/
+_staging/
+
 
 # OS artifacts
 .DS_Store

@@ -302,6 +302,8 @@ def build_bundle():
 
     # Process all markdown files in docs/
     for md_file in sorted(DOCS_DIR.glob("**/*.md")):
+        if any(part.startswith(".") or part in ("_staging", ".cache") for part in md_file.parts):
+            continue
         rel_path = str(md_file.relative_to(DOCS_DIR))
         # Skip README.md from becoming a concept file
         if rel_path == "README.md":
