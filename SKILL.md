@@ -9,19 +9,16 @@ This skill provides direct access to the official Google Publisher Tag (GPT) and
 
 ---
 
-## Documentation Location
+## Documentation Location (Self-Contained Skill)
 
-The canonical documentation mirror is maintained in:
-- **Repository-relative path:** `docs/` (when working within this repository or a project containing a GPT mirror)
-- **Skill package reference:** `<repo-root>/docs/` or `<skill-dir>/docs/`
-- **Fallback:** If `docs/` is not present in the current workspace, clone the reference mirror from `https://github.com/ilhamgusti/google-publisher-tag-skill` or access the installed skill directory.
-> **Note on Upstream Sync:**
-> `docs/` is a byte-identical mirror of official Google Publisher Tag documentation.
-> Run `./docs/scripts/refetch.sh` to pull upstream updates, followed by `python3 scripts/build-okf.py` to rebuild the OKF bundle.
-> **NEVER** edit files in `docs/` directly or inject YAML frontmatter into them, keeping them byte-identical to upstream for clean cutover.
-> Always read files on demand from `docs/`.
+All official documentation, TypeScript API references, and runnable samples are **packaged directly inside this skill**:
+- **Skill internal path:** `./docs/` (relative to this skill directory)
+- **OKF bundle path:** `./okf/` (relative to this skill directory)
 
----
+> **Consumer Project Isolation:**
+> **NEVER** copy or clone `docs/` or `okf/` into consumer projects that use this skill.
+> Consuming codebases must stay clean. The agent reads documentation and references directly from this skill's internal directory.
+> The internal `docs/` is a byte-identical live mirror synchronized via `./docs/scripts/refetch.sh`.
 
 ## Core Invariants & Rules for GPT Implementations
 
@@ -157,8 +154,8 @@ docs/
 
 ## Workflow for Agents Working on GPT
 
-1. **Identify the Intent**: Match the task to the [Task Routing Table](#task-routing-table).
-2. **Read Targeted Documentation**: Read only the relevant guide or sample (e.g. `docs/samples/lazy-loading.md`) rather than reading large files upfront.
-3. **Inspect Sample Code**: When generating code for complex slots (anchor, rewarded, interstitial), read the corresponding `docs/samples/<name>/js/demo.html` or `sample.ts`.
-4. **API Verification**: For exact parameter types, method options, or event payload fields, grep or inspect `docs/reference.md`.
-5. **Sanity Check Against Pitfalls**: Verify against `docs/common-implementation-mistakes.md` before finalizing ad slot scripts.
+1. **Identify the Intent**: Match the developer's task to the [Task Routing Table](#task-routing-table).
+2. **Read Targeted Documentation from Skill**: Read only the relevant guide or sample directly from this skill's `docs/` or `okf/` (e.g. `./docs/samples/lazy-loading.md`). Do **NOT** copy or mirror docs into the consumer project.
+3. **Inspect Sample Code**: When generating code for complex slots (anchor, rewarded, interstitial), read the corresponding `./docs/samples/<name>/js/demo.html` or `sample.ts` within the skill package.
+4. **API Verification**: For exact parameter types, method options, or event payload fields, grep or inspect `./docs/reference.md`.
+5. **Sanity Check Against Pitfalls**: Verify against `./docs/common-implementation-mistakes.md` before finalizing ad slot scripts.

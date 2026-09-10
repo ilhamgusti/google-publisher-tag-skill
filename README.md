@@ -45,17 +45,20 @@ Designed for AI coding agents such as Claude Code, Cursor, Windsurf, Oh My Pi, a
   3. API readiness check via `googletag.apiReady` (never `typeof googletag !== 'undefined'`)
   4. Anti-CLS slot space reservation prior to rendering
 
-### Installing the Skill
+### Installing the Skill (Zero Project Pollution)
 
-**Global installation (for your agent ecosystem):**
+The documentation and samples are **permanently attached to the skill**. Projects using this skill remain 100% clean and never need a `docs/` folder.
+
+**Global installation (recommended for agents across all your projects):**
 ```bash
-mkdir -p ~/.agents/skills/google-publisher-tag
-cp SKILL.md ~/.agents/skills/google-publisher-tag/
-```
-Or symlink this repository directly:
-```bash
+# Option A: Clone directly into your agent skills directory
+git clone https://github.com/ilhamgusti/google-publisher-tag-skill.git ~/.agents/skills/google-publisher-tag
+
+# Option B: If cloned locally, symlink the repository
 ln -s "$(pwd)" ~/.agents/skills/google-publisher-tag
 ```
+
+Once installed, your AI agent automatically accesses GPT documentation, TypeScript definitions, and code samples internally without polluting your project workspace.
 
 ---
 
